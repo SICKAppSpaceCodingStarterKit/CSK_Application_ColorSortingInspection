@@ -1,0 +1,253 @@
+<layout-row id="RowLayout1">
+	<layout-column id="ColumnLayout1" style="align-items:stretch">
+		<layout-row id="RowLayout5"
+			class="myCustomFrame_CSK_Module_UserManagement">
+			<layout-column id="ColumnLayout7" style="align-items: stretch">
+				<curie-callout id="DC_LoggedUser">
+					<crown-edpws-binding property="value"
+						name="CSK_UserManagement/OnNewLoggedInUser" update-on-resume>
+					</crown-edpws-binding>
+				</curie-callout>
+				<davinci-drop-down id="DD_User" label="User:">
+					<crown-edpws-binding property="data"
+						name="CSK_UserManagement/OnNewUserList" update-on-resume
+						converter="convertToList">
+					</crown-edpws-binding>
+					<crown-edpws-binding property="value"
+						name="CSK_UserManagement/OnNewUserToLogIn" update-on-resume>
+					</crown-edpws-binding>
+					<crown-binding event="change" name="CSK_UserManagement/setLoginUser"
+						path="param/args/user" auto-commit>
+					</crown-binding>
+				</davinci-drop-down>
+				<davinci-text-field id="TF_Password" type="password"
+					label="Password:">
+					<crown-binding event="change"
+						name="CSK_UserManagement/setLoginPassword"
+						path="param/args/password" auto-commit>
+					</crown-binding>
+					<crown-edpws-binding property="value"
+						name="CSK_UserManagement/OnNewLogInPassword" update-on-resume>
+					</crown-edpws-binding>
+				</davinci-text-field>
+				<layout-row id="RowLayout7" style="justify-content: space-between">
+					<davinci-button id="B_Login" type="primary" icon-position="append">
+						<span>Login</span>
+						<crown-binding event="submit" name="CSK_UserManagement/login"
+							auto-commit>
+						</crown-binding>
+					</davinci-button>
+					<davinci-button id="B_Logout" type="primary" icon-position="append">
+						<span>Logout</span>
+						<crown-binding event="submit" name="CSK_UserManagement/logout"
+							auto-commit>
+						</crown-binding>
+					</davinci-button>
+				</layout-row>
+				<stacked-view id="SV_WrongPassword">
+					<stacked-pane id="SP_ShowInfoWrongPassword" value="false">
+						<davinci-callout id="Callout1" type="error">
+							<span>Wrong password</span>
+						</davinci-callout>
+					</stacked-pane>
+					<stacked-pane id="SP_NoPasswordInfo" value="true"></stacked-pane>
+					<crown-edpws-binding property="value"
+						name="CSK_UserManagement/OnNewHideWrongPassword" update-on-resume
+						converter="function(value) {return value.toString();}">
+					</crown-edpws-binding>
+				</stacked-view>
+			</layout-column>
+		</layout-row>
+		<stacked-view id="SV_LoginAdmin">
+			<stacked-pane id="SP_AdminActive" value="true">
+				<layout-row id="RowLayout6"
+					class="myCustomFrame_CSK_Module_UserManagement">
+					<layout-column id="ColumnLayout8" style="align-items: stretch">
+						<davinci-value-display id="VD_AdminFeatures" label="Admin features:">
+						</davinci-value-display>
+						<davinci-text-field id="TF_NewUser" type="text" label="New username">
+							<crown-binding event="change" name="CSK_UserManagement/setNewUsername"
+								path="param/args/name" auto-commit>
+							</crown-binding>
+						</davinci-text-field>
+						<davinci-button id="B_AddUser" type="primary" icon-position="append">
+							<span>Add User</span>
+							<crown-binding event="submit" name="CSK_UserManagement/addUser"
+								auto-commit>
+							</crown-binding>
+						</davinci-button>
+						<curie-table id="DT_UserList" selectable select-mode="highlight_row">
+							<curie-table-column id="User" header="User" title="User">
+							</curie-table-column>
+							<crown-edpws-binding property="data"
+								name="CSK_UserManagement/OnNewUserTableList" update-on-resume>
+							</crown-edpws-binding>
+							<crown-binding event="row-selected"
+								name="CSK_UserManagement/selectedUserViaTable"
+								path="param/args/selection" auto-commit>
+							</crown-binding>
+						</curie-table>
+						<davinci-value-display id="VD_SelectUser" value=""
+							label="Selected user to update:">
+							<crown-edpws-binding property="value"
+								name="CSK_UserManagement/OnNewUserToUpdate" update-on-resume>
+							</crown-edpws-binding>
+						</davinci-value-display>
+						<davinci-text-field id="TF_NewPassword" type="password"
+							label="New Password:">
+							<crown-binding event="change" name="CSK_UserManagement/setNewPassword"
+								path="param/args/password" auto-commit>
+							</crown-binding>
+							<crown-edpws-binding property="value"
+								name="CSK_UserManagement/OnNewPasswordToUpdate" update-on-resume>
+							</crown-edpws-binding>
+						</davinci-text-field>
+						<davinci-callout id="CO_PasswordUpdated" type="success">
+							<span>New password active.</span>
+							<crown-edpws-binding property="hidden"
+								name="CSK_UserManagement/OnNewHidePasswordInfo" update-on-resume>
+							</crown-edpws-binding>
+						</davinci-callout>
+						<davinci-drop-down id="DD_UserLevel" label="User level">
+							<davinci-option id="Option1" value="Operator">
+								<span>Operator</span>
+							</davinci-option>
+							<davinci-option id="Option2" value="Maintenance">
+								<span>Maintenance</span>
+							</davinci-option>
+							<davinci-option id="Option3" value="Service">
+								<span>Service</span>
+							</davinci-option>
+							<davinci-option id="Option4" value="Admin">
+								<span>Admin</span>
+							</davinci-option>
+							<crown-binding event="change"
+								name="CSK_UserManagement/setNewUserLevel" path="param/args/level"
+								auto-commit>
+							</crown-binding>
+							<crown-edpws-binding property="value"
+								name="CSK_UserManagement/OnNewUserLevelToUpdate" update-on-resume>
+							</crown-edpws-binding>
+						</davinci-drop-down>
+						<davinci-button id="B_RemoveUser" type="primary"
+							icon-position="append">
+							<span>Remove</span>
+							<crown-binding event="submit" name="CSK_UserManagement/removeUser"
+								auto-commit>
+							</crown-binding>
+						</davinci-button>
+					</layout-column>
+				</layout-row>
+			</stacked-pane>
+			<stacked-pane id="SP_NoAdmin" value="false"></stacked-pane>
+			<crown-edpws-binding property="value"
+				name="CSK_UserManagement/OnUserLevelAdminActive" update-on-resume
+				converter="function(value) {return value.toString();}">
+			</crown-edpws-binding>
+		</stacked-view>
+	</layout-column>
+	<layout-column id="ColumnLayout2" style="flex-grow: 3">
+		<stacked-view id="SV_Login">
+			<stacked-pane id="SP_LoginOK" value="true">
+				<layout-column id="Column_PersistentData"
+					class="myCustomFrame_CSK_Module_UserManagement"
+					style="align-items: stretch">
+					<layout-row id="RowLayout4"
+						style="justify-content: space-between; align-items: center">
+						<layout-column id="ColumnLayout5" style="align-items: stretch">
+							<davinci-value-display id="VD_ParameterName" value="Parameter name:"
+								title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+							</davinci-value-display>
+						</layout-column>
+						<layout-column id="ColumnLayout6" style="align-items: stretch">
+							<davinci-text-field id="TF_ParameterName" type="text"
+								title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+								<crown-edpws-binding property="value"
+									name="CSK_UserManagement/OnNewParameterName" update-on-resume>
+								</crown-edpws-binding>
+								<crown-binding event="change"
+									name="CSK_UserManagement/setParameterName" path="param/args/name"
+									auto-commit>
+								</crown-binding>
+								<crown-edpws-binding property="disabled"
+									name="CSK_UserManagement/OnPersistentDataModuleAvailable"
+									update-on-resume converter="function(value) {return !value;}">
+								</crown-edpws-binding>
+							</davinci-text-field>
+						</layout-column>
+					</layout-row>
+					<layout-row id="RowLayout2"
+						style="justify-content: space-between; align-items: center">
+						<davinci-value-display id="VD_LoadConfig"
+							value="Load config on app start:"
+							title="Load configured parameters from CSK_PersistentData on app start.">
+						</davinci-value-display>
+						<davinci-checkbox id="CB_LoadConfig"
+							title="Load configured parameters from CSK_PersistentData on app start.">
+							<span></span>
+							<crown-edpws-binding property="checked"
+								name="CSK_UserManagement/OnNewStatusLoadParameterOnReboot"
+								update-on-resume>
+							</crown-edpws-binding>
+							<crown-edpws-binding property="disabled"
+								name="CSK_UserManagement/OnPersistentDataModuleAvailable"
+								update-on-resume converter="function(value) {return !value;}">
+							</crown-edpws-binding>
+							<crown-binding event="change"
+								name="CSK_UserManagement/setLoadOnReboot" path="param/args/status"
+								auto-commit>
+							</crown-binding>
+						</davinci-checkbox>
+					</layout-row>
+					<layout-row id="RowLayout3">
+						<layout-column id="ColumnLayout3" style="align-items: stretch">
+							<davinci-button id="B_LoadConfig" type="primary"
+								icon-position="append"
+								title="Load configured parameters from CSK_PersistentData module.">
+								<span>Load Config</span>
+								<crown-binding event="submit" name="CSK_UserManagement/loadParameters"
+									auto-commit>
+								</crown-binding>
+								<crown-edpws-binding property="disabled"
+									name="CSK_UserManagement/OnPersistentDataModuleAvailable"
+									update-on-resume converter="function(value) {return !value;}">
+								</crown-edpws-binding>
+							</davinci-button>
+						</layout-column>
+						<layout-column id="ColumnLayout4" style="align-items: stretch">
+							<davinci-button id="B_SaveConfig" type="primary"
+								icon-position="append">
+								<span>Save Config</span>
+								<crown-binding event="submit" name="CSK_UserManagement/sendParameters"
+									auto-commit>
+								</crown-binding>
+								<crown-edpws-binding property="disabled"
+									name="CSK_UserManagement/OnPersistentDataModuleAvailable"
+									update-on-resume converter="function(value) {return !value;}">
+								</crown-edpws-binding>
+							</davinci-button>
+						</layout-column>
+					</layout-row>
+				</layout-column>
+			</stacked-pane>
+			<stacked-pane id="SP_NotLoggedIn" value="false">
+				<davinci-callout id="Callout3" type="info">
+					<span>
+						Please login with minimun user level 'Maintenance' to setup parameter config.
+					</span>
+				</davinci-callout>
+			</stacked-pane>
+			<crown-edpws-binding property="value"
+				name="CSK_UserManagement/OnUserLevelMaintenanceActive"
+				update-on-resume
+				converter="function(value) {return value.toString();}">
+			</crown-edpws-binding>
+		</stacked-view>
+		<stacked-view id="SV_PageCalled">
+			<crown-binding property="value" name="CSK_UserManagement/pageCalled"
+				path="result/data/empty" auto-update="0" update-on-resume>
+			</crown-binding>
+		</stacked-view>
+	</layout-column>
+  
+</layout-row>
