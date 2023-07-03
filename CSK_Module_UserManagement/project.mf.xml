@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest>
+    <application name="CSK_Module_UserManagement">
+        <crown name="CSK_Module_UserManagement">
+            <desc>This is an automatically generated CROWN (description not necessary).</desc>
+        </crown>
+        <crown name="CSK_UserManagement">
+            <trait>released</trait>
+            <desc>Module to handle user management on app level. +
+With this module you can +
+{empty} +
+- create user +
+- change userlevel / passwords of the users +
+{empty} +
+Other modules can react on the user logins via the provided events ("OnUserLevel[Userlevel]Active") to show/hide content, enable/disable functions, log the active user via "OnNewLoggedInUser", etc.). +
+Default password for user "Admin" is "admin". +
+{empty} +
+*INFO*: Please customize the "userManagement_Model.key" for internal encryption for security reason of your specific application.</desc>
+            <enum name="UserLevel" trait="released">
+                <desc>Available user level.</desc>
+                <item desc="Operator" name="Operator">Operator</item>
+                <item desc="Maintenance" name="Maintenance">Maintenance</item>
+                <item desc="Service" name="Service">Service</item>
+                <item desc="Admin" name="Admin">Admin</item>
+            </enum>
+            <serves>
+                <event name="OnNewStatusLoadParameterOnReboot">
+                    <desc>Notify status if parameters should be loaded on app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnPersistentDataModuleAvailable">
+                    <desc>Notify status if features of CSK_PersistendData module are available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnDataLoadedOnReboot">
+                    <desc>Event to call if module tried to load parameters and should be ready.</desc>
+                </event>
+                <event name="OnNewParameterName">
+                    <desc>Notify name of persistent data parameter.</desc>
+                    <param desc="Parameter name" multiplicity="1" name="name" type="string"/>
+                </event>
+                <event name="OnNewLoggedInUser">
+                    <desc>Notify currently logged in user.</desc>
+                    <param desc="User logged in" multiplicity="1" name="user" type="string"/>
+                </event>
+                <event name="OnNewUserList">
+                    <desc>Notify list of users to be selectable in UI to login.</desc>
+                    <param desc="List of users." multiplicity="1" name="userList" type="string"/>
+                </event>
+                <event name="OnNewUserTableList">
+                    <desc>Notify list of users to be selectable in tableview of UI if logged in as admin to select and update users.</desc>
+                    <param desc="User list for table view." multiplicity="1" name="userList" type="string"/>
+                </event>
+                <event name="OnNewUserToLogIn">
+                    <desc>Notify preselected user to login.</desc>
+                    <param desc="User to log in." multiplicity="1" name="user" type="string"/>
+                </event>
+                <event name="OnUserLevelAdminActive">
+                    <desc>Notify if currently logged in user has userlevel "Admin".</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelOperatorActive">
+                    <desc>Notify if currently logged in user has userlevel "Operator" or higher.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelServiceActive">
+                    <desc>Notify if currently logged in user has userlevel "Service" or higher.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewUserToUpdate">
+                    <desc>Notify preselected user to update to show info in UI.</desc>
+                    <param desc="Selected user." multiplicity="1" name="user" type="string"/>
+                </event>
+                <event name="OnNewPasswordToUpdate">
+                    <desc>Notify empty password with page reload.</desc>
+                    <param desc="Empty password." multiplicity="1" name="password" type="string"/>
+                </event>
+                <event name="OnNewUserLevelToUpdate">
+                    <desc>Notify userlevel for selected user to update.</desc>
+                    <param desc="Current userlevel of selected user to update." multiplicity="1" name="userlevel" type="string"/>
+                </event>
+                <event name="OnNewHidePasswordInfo">
+                    <desc>Event to hide password info on UI.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewLogInPassword">
+                    <desc>Notify empty password with page reload.</desc>
+                    <param desc="Empty password." multiplicity="1" name="password" type="string"/>
+                </event>
+                <event name="OnNewHideWrongPassword">
+                    <desc>Event to hide info of wrong password on UI.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelMaintenanceActive">
+                    <desc>Notify if currently logged in user has userlevel "Maintenance" or higher.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <function name="setParameterName">
+                    <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
+                    <param desc="Name of the parameter" multiplicity="1" name="name" type="string"/>
+                </function>
+                <function name="sendParameters">
+                    <desc>Send parameters to CSK_PersistentData module if possible to save them.</desc>
+                </function>
+                <function name="loadParameters">
+                    <desc>Load parameters for this module from the CSK_PersistentData module if possible and use them.</desc>
+                </function>
+                <function name="setLoadOnReboot">
+                    <desc>Configure if this module should load its saved parameters at app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="pageCalled">
+                    <desc>Function to register "OnResume" of the module UI (only as helper function).</desc>
+                    <return desc="Empty string (only needed to simplify binding)." multiplicity="1" name="empty" type="string"/>
+                </function>
+                <function name="addUser">
+                    <desc>Add preset user to available users (see "setNewUsername").</desc>
+                </function>
+                <function name="setLoginPassword">
+                    <desc>Preset password to login in via "login".</desc>
+                    <param desc="Password" multiplicity="1" name="password" type="string"/>
+                </function>
+                <function name="login">
+                    <desc>Login in as user with preset username+password (see "setLoginUser"/"setLoginPassword").</desc>
+                </function>
+                <function name="logout">
+                    <desc>Logout of current user.</desc>
+                </function>
+                <function name="selectedUserViaTable">
+                    <desc>Get selection of UI table to select user to edit.</desc>
+                    <param desc="Selected User in Table." multiplicity="1" name="selection" type="string"/>
+                </function>
+                <function name="setNewUsername">
+                    <desc>Preset username to add as new user via "addUser".</desc>
+                    <param desc="New username." multiplicity="1" name="name" type="string"/>
+                </function>
+                <function name="setNewUserLevel">
+                    <desc>Set new userlevel for preselected user (see "selectUserToUpdate" / "selectUserViaTable").</desc>
+                    <param desc="Userlevel" multiplicity="1" name="level" ref="CSK_UserManagement.UserLevel" type="enum"/>
+                </function>
+                <function name="setNewPassword">
+                    <desc>Set new password for preselected user (see "selectUserToUpdate" / "selectUserViaTable").</desc>
+                    <param desc="Password" multiplicity="1" name="password" type="string"/>
+                </function>
+                <function name="removeUser">
+                    <desc>Remove preselected user (see "selectedUser").</desc>
+                </function>
+                <function name="setLoginUser">
+                    <desc>Preset user to login via "login".</desc>
+                    <param desc="User to login." multiplicity="1" name="user" type="string"/>
+                </function>
+                <function name="selectUserToUpdate">
+                    <desc>Selecte user to update.</desc>
+                    <param desc="User to update." multiplicity="1" name="user" type="string"/>
+                    <return desc="Selected user exists." multiplicity="1" name="success" type="bool"/>
+                </function>
+            </serves>
+        </crown>
+        <meta key="author">SICK AG</meta>
+        <meta key="version">1.5.0</meta>
+        <meta key="priority">low</meta>
+        <meta key="copy-protected">false</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="crown2-flow-engine">false</meta>
+        <meta key="LuaLoadAllEngineAPI">false</meta>
+        <entry default="CSK_Module_UserManagement.lua" path="scripts"/>
+    </application>
+</manifest>
