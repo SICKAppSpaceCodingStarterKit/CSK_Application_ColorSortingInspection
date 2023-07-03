@@ -1,0 +1,14 @@
+.myCustomFrame_CSK_Application_ColorSortingInspection {
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  margin: 6px;
+}
+
+.myCustomViewerSize_CSK_Application_ColorSortingInspection {
+  min-height: 600px;
+}
+
+.myCustomminHeight_7px_CSK_Application_ColorSortingInspection {
+  min-height: 7px;
+}

@@ -1,0 +1,458 @@
+<layout-row id="RowLayout1" style="align-items: stretch">
+	<layout-column id="ColumnLayout25" style="align-items: stretch">
+		<stacked-view id="SV_Login">
+			<stacked-pane id="SP_LoggedIn" value="true">
+				<layout-row id="RowLayout21">
+					<layout-column id="ColumnLayout1"
+						style="align-items: stretch; flex-grow: 2">
+						<davinci-tabs id="Tabs_Setup_Viewer" type="modern"
+							style="flex-grow: 1; flex-shrink: 0">
+							<davinci-tab id="Tab_Setup" label="HW Setup">
+								<layout-column id="ColumnLayout5" style="align-items: stretch">
+									<davinci-button id="B_LoadDefaultSetup" type="primary"
+										icon-position="append"
+										title="Set parameters with default configuration.">
+										<span>Load Default Setup</span>
+										<crown-binding event="submit"
+											name="CSK_ColorSortingInspection/setDefaultSetup" auto-commit>
+										</crown-binding>
+									</davinci-button>
+									<davinci-callout id="Callout_DefaultSetup" type="info">
+										<span>Default setup (can be adjusted...)</span>
+									</davinci-callout>
+									<stacked-view id="SV_SetupProcessing">
+										<stacked-pane id="SP_CurrentlyProcessing" value="true">
+											<davinci-callout id="Callout2" type="info">
+												<span>
+												Currently setting up the hardware. Please wait ~15 secs ...
+												</span>
+											</davinci-callout>
+										</stacked-pane>
+										<stacked-pane id="SP_empty" value="false"></stacked-pane>
+										<crown-edpws-binding property="value"
+											name="CSK_ColorSortingInspection/OnNewStatusSetupHardware"
+											update-on-resume
+											converter="function(value) {return value.toString();}">
+										</crown-edpws-binding>
+									</stacked-view>
+									<stacked-view id="SV_CameraBootUp">
+										<stacked-pane id="SP_CameraBootUp" value="true">
+											<davinci-callout id="Callout4" type="info">
+												<span>Currently waiting for camera boot up...</span>
+											</davinci-callout>
+										</stacked-pane>
+										<stacked-pane id="SP_empty2" value="false"></stacked-pane>
+										<crown-edpws-binding property="value"
+											name="CSK_MultiRemoteCamera/OnNewStatusWaitingForCameraBootUp"
+											update-on-resume
+											converter="function(value) {return value.toString();}">
+										</crown-edpws-binding>
+									</stacked-view>
+									<stacked-view id="SV_HardwareSetting">
+										<stacked-pane id="SP_SIM1004" value="SIM1004">
+											<layout-row id="RowLayout12">
+												<layout-column id="ColumnLayout11">
+												<img id="SIM1004Image"
+													src="assets/CSK_Application_ColorSortingInspection/ColorSorter-Hardware-SIM1004-NoDigitalOutput.JPG">
+												</layout-column>
+											</layout-row>
+										</stacked-pane>
+										<stacked-pane id="SP_SIM1004_CameraMode" value="SIM1004_CameraMode">
+											<layout-row id="RowLayout13">
+												<layout-column id="ColumnLayout12">
+												<img id="Image2"
+													src="assets/CSK_Application_ColorSortingInspection/ColorSorter-Hardware-SIM1004-DigitalOutputCamera.JPG">
+												</layout-column>
+											</layout-row>
+										</stacked-pane>
+										<stacked-pane id="SP_SIM1004_ResultMode" value="SIM1004_ResultMode">
+											<layout-row id="RowLayout11">
+												<layout-column id="ColumnLayout10">
+												<img id="Image1"
+													src="assets/CSK_Application_ColorSortingInspection/ColorSorter-Hardware-SIM1004-DigitalOutputResult.JPG">
+												</layout-column>
+											</layout-row>
+										</stacked-pane>
+										<stacked-pane id="SP_SIM1012" value="SIM1012">
+											<layout-row id="RowLayout2">
+												<layout-column id="ColumnLayout2" style="flex-grow: 3">
+												<img id="SIM1012Image"
+													src="assets/CSK_Application_ColorSortingInspection/ColorSorter-Hardware-SIM1012.JPG">
+												</layout-column>
+											</layout-row>
+										</stacked-pane>
+										<stacked-pane id="SP_SIM4000" value="SIM4000">
+											<layout-row id="RowLayout14">
+												<layout-column id="ColumnLayout13">
+												<img id="SIM4000Image"
+													src="assets/CSK_Application_ColorSortingInspection/ColorSorter-Hardware-SIM4000.JPG">
+												</layout-column>
+											</layout-row>
+										</stacked-pane>
+										<stacked-pane id="SP_SIM2x00" value="SIM2x00">
+											<layout-row id="RowLayout19">
+												<layout-column id="ColumnLayout21">
+												<img id="Image3"
+													src="assets/CSK_Application_ColorSortingInspection/ColorSorter-Hardware-SIM2x00.JPG">
+												</layout-column>
+											</layout-row>
+										</stacked-pane>
+										<stacked-pane id="SP_Emulator" value="AppStudioEmulator">
+											<layout-row id="RowLayout15">
+												<layout-column id="ColumnLayout14">
+												<img id="EmulatorImage"
+													src="assets/CSK_Application_ColorSortingInspection/ColorSorter-Hardware-Emulator.JPG"
+													alt="No image">
+												</layout-column>
+											</layout-row>
+										</stacked-pane>
+										<crown-edpws-binding property="value"
+											name="CSK_ColorSortingInspection/OnNewDeviceType"
+											update-on-resume>
+										</crown-edpws-binding>
+									</stacked-view>
+								</layout-column>
+							</davinci-tab>
+							<davinci-tab id="Tab_Viewer" label="Viewer">
+								<layout-row id="RowLayout3" style="align-items: stretch">
+									<layout-column id="ColumnLayout3" style="align-items: stretch">
+										<sick-viewer2d id="Viewer2D1"
+											class="myCustomViewerSize_CSK_Application_ColorSortingInspection"
+											viewer-id="multiColorSelectionViewer1"
+											style="width: 100%; height: 100%">
+										</sick-viewer2d>
+									</layout-column>
+								</layout-row>
+							</davinci-tab>
+						</davinci-tabs>
+					</layout-column>
+					<layout-column id="ColumnLayout38"
+						style="align-items: stretch; align-self: flex-start">
+						<davinci-tabs id="Tabs_Setup_Instances" type="modern">
+							<davinci-tab id="Tab_AppSetup" label="Result">
+								<layout-column id="ColumnLayout16" style="align-items: stretch">
+									<layout-row id="RowLayout8"
+										style="justify-content: space-between; align-items: center">
+										<layout-column id="ColumnLayout9" style="align-items: stretch">
+											<davinci-value-display id="VD_SelectInstance"
+												value="Selected ColorSelection Instance:">
+											</davinci-value-display>
+										</layout-column>
+										<layout-column id="ColumnLayout15" style="align-items: stretch">
+											<davinci-drop-down id="DD_Instances">
+												<crown-edpws-binding property="data"
+													name="CSK_MultiColorSelection/OnNewInstanceList" update-on-resume
+													converter="convertToList">
+												</crown-edpws-binding>
+												<crown-edpws-binding property="value"
+													name="CSK_MultiColorSelection/OnNewSelectedInstance"
+													update-on-resume
+													converter="function(value) {return value.toString();}">
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_ColorSortingInspection/setInstance"
+													path="param/args/instance" auto-commit
+													converter="function(value) {return Number(value);}">
+												</crown-binding>
+											</davinci-drop-down>
+										</layout-column>
+									</layout-row>
+									<layout-row id="RowLayout7"
+										class="myCustomminHeight_7px_CSK_Application_ColorSortingInspection">
+									</layout-row>
+									<layout-row id="RowLayout17"
+										style="justify-content: space-between; align-items: center">
+										<davinci-value-display id="VD_ShowImage" value="Show image:">
+										</davinci-value-display>
+										<davinci-toggle-switch id="TS_ShowImage">
+											<crown-edpws-binding property="checked"
+												name="CSK_MultiColorSelection/OnNewStatusShowImage"
+												update-on-resume>
+											</crown-edpws-binding>
+											<crown-binding event="change"
+												name="CSK_MultiColorSelection/setShowImage"
+												path="param/args/status" auto-commit>
+											</crown-binding>
+										</davinci-toggle-switch>
+									</layout-row>
+									<layout-row id="RowLayout9"
+										class="myCustomminHeight_7px_CSK_Application_ColorSortingInspection">
+									</layout-row>
+									<layout-row id="RowLayout5" style="justify-content: space-between">
+										<layout-column id="ColumnLayout23" style="align-items: stretch">
+											<davinci-button id="Button_OfflineMode" type="outline-neutral"
+												icon-position="append"
+												title="Configure current selected colorSelection instance to process images from offline image player.">
+												<span>Register To Offline Player</span>
+												<crown-binding event="submit"
+													name="CSK_ColorSortingInspection/registerToOfflineImagePlayer"
+													auto-commit>
+												</crown-binding>
+											</davinci-button>
+										</layout-column>
+										<layout-column id="ColumnLayout24" style="align-items: stretch">
+											<davinci-button id="Button_CameraMode" type="outline-neutral"
+												icon-position="append"
+												title="Configure current selected colorSelection instance to process images from remote camera no.1 (can be adapted in color selection UI).">
+												<span>Register To Camera</span>
+												<crown-binding event="submit"
+													name="CSK_ColorSortingInspection/registerToRemoteCamera"
+													auto-commit>
+												</crown-binding>
+											</davinci-button>
+										</layout-column>
+									</layout-row>
+									<layout-row id="RowLayout6" style="justify-content: space-between">
+										<layout-column id="ColumnLayout7" style="align-items: stretch">
+											<davinci-value-display id="VD_ProcessingTime" label="Processing time:"
+												unit="ms">
+												<crown-edpws-binding property="value"
+													name="CSK_MultiColorSelection/OnNewProcessingTime"
+													update-on-resume>
+												</crown-edpws-binding>
+											</davinci-value-display>
+											<davinci-value-display id="VD_CameraQueueSize"
+												label="Camera image queue size:">
+												<crown-edpws-binding property="value"
+													name="CSK_MultiRemoteCamera/OnNewImageQueueCamera"
+													update-on-resume>
+												</crown-edpws-binding>
+											</davinci-value-display>
+											<davinci-value-display id="VD_ColorProcessingQueue"
+												label="Color processing queue size:">
+												<crown-edpws-binding property="value"
+													name="CSK_MultiColorSelection/OnNewImageQueue" update-on-resume>
+												</crown-edpws-binding>
+											</davinci-value-display>
+											<davinci-value-display id="VD_ResultOutput" label="Result Output:">
+												<crown-edpws-binding property="value"
+													name="CSK_MultiColorSelection/OnNewResult" update-on-resume>
+												</crown-edpws-binding>
+											</davinci-value-display>
+										</layout-column>
+										<layout-column id="ColumnLayout8" style="align-items: stretch">
+											<davinci-value-display id="VD_TotalResult" label="Total Result">
+											</davinci-value-display>
+											<stacked-view id="SV_TotalResult">
+												<stacked-pane id="SP_OK" value="true">
+												<img id="ImageOK"
+													src="assets/CSK_Application_ColorSortingInspection/OK.JPG">
+												</stacked-pane>
+												<stacked-pane id="SP_NG" value="false">
+												<img id="ImageNG"
+													src="assets/CSK_Application_ColorSortingInspection/NotOK.JPG">
+												</stacked-pane>
+												<crown-edpws-binding property="value"
+													name="CSK_MultiColorSelection/OnNewTotalResult" update-on-resume
+													converter="function(value) {return value.toString();}">
+												</crown-edpws-binding>
+											</stacked-view>
+										</layout-column>
+									</layout-row>
+									<layout-row id="RowLayout16"
+										style="align-items: center; justify-content: space-between">
+										<davinci-value-display id="VD_TCPIPOutput"
+											value="TCP/IP Result Output:"
+											title="Forward results via TCPIP (see also UI of Color Selection + TCP IP )">
+										</davinci-value-display>
+										<davinci-toggle-switch id="TS_TCPIPOutput"
+											title="Forward results via TCPIP (see also UI of Color Selection + TCP IP )">
+											<crown-binding event="change"
+												name="CSK_ColorSortingInspection/setResultOutputViaTCPIP"
+												path="param/args/status" auto-commit>
+											</crown-binding>
+											<crown-edpws-binding property="checked"
+												name="CSK_ColorSortingInspection/OnNewStatusResultOutputTCPIP"
+												update-on-resume>
+											</crown-edpws-binding>
+										</davinci-toggle-switch>
+									</layout-row>
+									<layout-column id="Column_PersistentData"
+										class="myCustomFrame_CSK_Application_ColorSortingInspection"
+										style="align-items: stretch">
+										<layout-row id="RowLayout41"
+											style="justify-content: space-between; align-items: center">
+											<layout-column id="ColumnLayout51" style="align-items: stretch">
+												<davinci-value-display id="VD_ParameterName" value="Parameter name:"
+													title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+												</davinci-value-display>
+											</layout-column>
+											<layout-column id="ColumnLayout61" style="align-items: stretch">
+												<davinci-text-field id="TF_ParameterName" type="text"
+													title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+												<crown-edpws-binding property="value"
+													name="CSK_ColorSortingInspection/OnNewParameterName"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_ColorSortingInspection/setParameterName"
+													path="param/args/name" auto-commit>
+												</crown-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_ColorSortingInspection/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												</davinci-text-field>
+											</layout-column>
+										</layout-row>
+										<layout-row id="RowLayout24"
+											style="justify-content: space-between; align-items: center">
+											<davinci-value-display id="VD_LoadConfig"
+												value="Load config on app start:"
+												title="Load configured parameters from CSK_PersistentData on app start.">
+											</davinci-value-display>
+											<davinci-checkbox id="CB_LoadConfig"
+												title="Load configured parameters from CSK_PersistentData on app start.">
+												<span></span>
+												<crown-edpws-binding property="checked"
+													name="CSK_ColorSortingInspection/OnNewStatusLoadParameterOnReboot"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_ColorSortingInspection/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_ColorSortingInspection/setLoadOnReboot"
+													path="param/args/status" auto-commit>
+												</crown-binding>
+											</davinci-checkbox>
+										</layout-row>
+										<layout-row id="RowLayout43">
+											<layout-column id="ColumnLayout43" style="align-items: stretch">
+												<davinci-button id="B_LoadConfig" type="primary"
+													icon-position="append"
+													title="Load configured parameters from CSK_PersistentData module.">
+												<span>Load Config</span>
+												<crown-binding event="submit"
+													name="CSK_ColorSortingInspection/loadParameters" auto-commit>
+												</crown-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_ColorSortingInspection/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												</davinci-button>
+											</layout-column>
+											<layout-column id="ColumnLayout54" style="align-items: stretch">
+												<davinci-button id="B_SaveConfig" type="primary"
+													icon-position="append"
+													title="Save current configured parameters of this module within CSK_PersistentData module.">
+												<span>Save Config</span>
+												<crown-binding event="submit"
+													name="CSK_ColorSortingInspection/sendParameters" auto-commit>
+												</crown-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_ColorSortingInspection/OnPersistentDataModuleAvailable"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												</davinci-button>
+											</layout-column>
+										</layout-row>
+										<davinci-button id="Button_SaveAllConfigs" type="primary"
+											icon-position="append"
+											title="Save settings incl. config of all sub modules.">
+											<span>Save All Configs</span>
+											<crown-binding event="submit"
+												name="CSK_ColorSortingInspection/saveAllConfigs" auto-commit>
+											</crown-binding>
+										</davinci-button>
+									</layout-column>
+								</layout-column>
+							</davinci-tab>
+							<davinci-tab id="Tab_Instances" label="Instances">
+								<layout-column id="ColumnLayout19" style="align-items: stretch">
+									<davinci-collapse id="Collapse1" collapsed-title="Show Info"
+										expanded-title="Hide">
+										<davinci-callout id="Callout_InfoText" type="info">
+											<span>
+												It is possible to add additional camera / colorSelection instances. With this it is possible to run e.g. multiple cameras in parallel or / and to process incoming images by multiple colorSelection instances. Please make sure to register the colorSelection instances to the related image events (see &quot;registerEvent&quot; within the colorSelection config).
+											</span>
+										</davinci-callout>
+									</davinci-collapse>
+									<layout-row id="RowLayout22"
+										style="justify-content: space-between; align-items: center">
+										<layout-column id="ColumnLayout4" style="align-items: stretch">
+											<davinci-value-display id="VD_Camera" value="Camera:">
+											</davinci-value-display>
+										</layout-column>
+										<layout-column id="ColumnLayout17" style="align-items: stretch">
+											<davinci-button id="Button_AddCamera" type="primary"
+												icon-position="append">
+												<span>Add instance</span>
+												<crown-binding event="submit" name="CSK_MultiRemoteCamera/addInstance"
+													auto-commit>
+												</crown-binding>
+											</davinci-button>
+										</layout-column>
+										<layout-column id="ColumnLayout18" style="align-items: stretch">
+											<davinci-button id="Button_ResetCameras" type="primary"
+												icon-position="append">
+												<span>Reset</span>
+												<crown-binding event="submit"
+													name="CSK_MultiRemoteCamera/resetInstances" auto-commit>
+												</crown-binding>
+											</davinci-button>
+										</layout-column>
+									</layout-row>
+									<layout-row id="RowLayout4" style="align-items: center">
+										<layout-column id="ColumnLayout6" style="align-items: stretch">
+											<davinci-value-display id="VD_ColorSelection" value="ColorSelection:">
+											</davinci-value-display>
+										</layout-column>
+										<layout-column id="ColumnLayout20" style="align-items: stretch">
+											<davinci-button id="Button_AddColorSelection" type="primary"
+												icon-position="append">
+												<span>Add instance</span>
+												<crown-binding event="submit"
+													name="CSK_MultiColorSelection/addInstance" auto-commit>
+												</crown-binding>
+											</davinci-button>
+										</layout-column>
+										<layout-column id="ColumnLayout22" style="align-items: stretch">
+											<davinci-button id="Button_ResetColorSelections" type="primary"
+												icon-position="append">
+												<span>Reset</span>
+												<crown-binding event="submit"
+													name="CSK_MultiColorSelection/resetInstances" auto-commit>
+												</crown-binding>
+											</davinci-button>
+										</layout-column>
+									</layout-row>
+									<davinci-button id="Button_RebootDevice" type="primary"
+										icon-position="append">
+										<span>Reboot device</span>
+										<crown-binding event="submit" name="CSK_ColorSortingInspection/reboot"
+											auto-commit>
+										</crown-binding>
+									</davinci-button>
+								</layout-column>
+							</davinci-tab>
+						</davinci-tabs>
+						<stacked-view id="SV_PageCalled">
+							<crown-binding property="value"
+								name="CSK_ColorSortingInspection/pageCalled"
+								path="result/data/empty" auto-update="0" update-on-resume>
+							</crown-binding>
+							<crown-edpws-binding property="value"
+								name="CSK_MultiColorSelection/OnNewViewerID" update-on-resume
+								converter="changeID">
+							</crown-edpws-binding>
+						</stacked-view>
+					</layout-column>
+				</layout-row>
+			</stacked-pane>
+			<stacked-pane id="SP_NotLoggedIn" value="false">
+				<davinci-callout id="Callout5" type="info">
+					<span>
+						Please login with minimum user level Maintenance to be able to configure the system.
+					</span>
+				</davinci-callout>
+			</stacked-pane>
+			<crown-edpws-binding property="value"
+				name="CSK_ColorSortingInspection/OnUserLevelMaintenanceActive"
+				update-on-resume
+				converter="function(value) {return value.toString();}">
+			</crown-edpws-binding>
+		</stacked-view>
+	</layout-column>
+</layout-row>
