@@ -1,0 +1,73 @@
+{
+  "version": "1.0", 
+  "pages": [
+    {
+      "category": "ColorInspectionSorting Application",
+      "pages": [
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Application_ColorSortingInspection.html",
+          "name": "Overview"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Application_MultiColorSelectionCustom.html",
+          "name": "Color Objects"
+        }
+      ]
+    },
+    {
+      "category": "Setup",
+      "pages": [
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_Logger_Frame.html",
+          "name": "Logs"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_UserManagement_Frame.html",
+          "name": "Login"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_DateTime_Frame.html",
+          "name": "Date Time"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_DeviceScanner_Frame.html",
+          "name": "Device Scanner"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_MultiRemoteCamera_Frame.html",
+          "name": "Camera"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_ImagePlayer_Frame.html",
+          "name": "Offline Images"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_PowerManager_Frame.html",
+          "name": "Power"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_DigitalIOManager_Frame.html",
+          "name": "Digital IO"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_TCPIPClient_Frame.html",
+          "name": "TCP/IP Client"
+        },
+
+        {
+          "path": "CSK_Application_ColorSortingInspection/CSK_Module_PersistentData_Frame.html",
+          "name": "Persistent Data"
+        }
+      ]
+    }
+  ]
+}
